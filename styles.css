@@ -32,11 +32,29 @@ body {
   justify-content:space-between
 }
 
-.logo {
+/* .logo {
   font-size:1.4em;
   font-weight:700;
   text-decoration:none;
   color:#fff
+} */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.4em;
+  font-weight: 700;
+}
+
+.logo img {
+  display: block;
+}
+
+.logo span {
+  line-height: 1;
 }
 
 .main-nav a {
@@ -54,6 +72,87 @@ body {
   background:linear-gradient(90deg,var(--orange),var(--yellow));
   padding:40px 20px;
   text-align:center
+} 
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  min-height: 200px; /* Увеличиваем высоту секции */
+}
+
+.hero-text {
+  flex: 1;
+  z-index: 2; /* Текст поверх логотипа */
+  position: relative;
+}
+
+.hero-logo {
+  position: absolute;
+  right: -50px; /* Выдвигаем за правый край */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hero-logo img {
+  opacity: 0.2; /* Еще более прозрачный */
+  /* filter: brightness(0) invert(1); */
+  width: 300px; /* Увеличиваем размер */
+  height: auto;
+  max-width: none; /* Убираем ограничения */
+}
+
+.hero-logo-r {
+  position: absolute;
+  right: -50px; /* Выдвигаем за правый край */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hero-logo-r img {
+  opacity: 0.2; /* Еще более прозрачный */
+  /* filter: brightness(0) invert(1); */
+  width: 250px; /* Увеличиваем размер */
+  height: auto;
+  max-width: none; /* Убираем ограничения */
+}
+
+/* Для мобильных */
+@media (max-width: 768px) {
+  .hero-logo {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .hero-logo img {
+    width: 200px;
+    opacity: 0.15;
+  }
+
+  .hero-logo-r {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .hero-logo-r img {
+    width: 200px;
+    opacity: 0.15;
+  }
+  
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+    min-height: auto;
+  }
 }
 
 h1,h2,h3 {
@@ -99,6 +198,19 @@ h1,h2,h3 {
 }
 
 .card .btn:hover {
+  opacity:.9
+}
+
+.contests-all-btn {
+  display:inline-block;
+  margin-top:10px;
+  padding:10px 14px;
+  border-radius:10px;
+  background:var(--red);
+  color:#fff;text-decoration:none
+}
+
+.contests-all-btn:hover {
   opacity:.9
 }
 

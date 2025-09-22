@@ -11,9 +11,20 @@ async function loadContests(){
   return contests.sort((a,b)=>parseDate(a.date) - parseDate(b.date));
 }
 
+async function loadArchive(){
+  const res = await fetch('data/archive.json');
+  const contests = await res.json();
+
+  function parseDate(str){
+    const [day, month, year] = str.split('-').map(Number);
+    return new Date(year, month - 1, day);
+  }
+
+  return contests.sort((a,b)=>parseDate(b.date) - parseDate(a.date)); // от новых к старым
+}
+
 function cardHTML(c){
   return `<div class="card">
-    
     <h3>${c.title}</h3>
     <div class="kv">
       <span class="badge">📅 ${c.date}</span>
@@ -23,7 +34,18 @@ function cardHTML(c){
     <a class="btn" href="contest.html?slug=${encodeURIComponent(c.slug)}">Подробнее</a>
   </div>`;
 }
-//<img src="${c.image}" alt="${c.title}"> (Вставить в функцию выше при надобности)
+
+function archiveCardHTML(c){
+  return `<div class="card">
+    <h3>${c.title}</h3>
+    <div class="kv">
+      <span class="badge">📅 ${c.date}</span>
+      <span class="badge">📍 ${c.place}</span>
+    </div>
+    <p>${c.excerpt||''}</p>
+    <a class="btn" href="${c.docs?.results||'#'}" target="_blank">🏆 Смотреть результаты</a>
+  </div>`;
+}
 
 function getParam(name){
   const url = new URL(window.location.href);
@@ -33,10 +55,12 @@ function getParam(name){
 (async ()=>{
   const contests = await loadContests();
 
-  // Главная — список ближайших (все для примера)
+  // Главная — список ближайших (только 3 первых)
   const up = document.getElementById('upcoming-list');
   if(up){
-    up.innerHTML = contests.map(cardHTML).join('');
+      // Берем только первые 3 конкурса
+      const upcomingContests = contests.slice(0, 3);
+      up.innerHTML = upcomingContests.map(cardHTML).join('');
   }
 
   // Каталог — все конкурсы
@@ -70,6 +94,11 @@ function getParam(name){
       </div>
     `;
   }
-})();
 
-//<img src="${c.image}" alt="${c.title}" style="width:100%;border-radius:12px;margin-bottom:12px"> (Вставить в функцию выше при надобности)
+  // Архив — список прошедших конкурсов
+  const archive = document.getElementById('archive-list');
+  if(archive){
+    const past = await loadArchive();
+    archive.innerHTML = past.map(archiveCardHTML).join('');
+  }
+})();

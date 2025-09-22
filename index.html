@@ -10,7 +10,10 @@
 <body>
 <header class="site-header">
   <div class="container header-flex">
-    <a class="logo" href="index.html">🔥 ФениксФест</a>
+    <a class="logo" href="index.html">
+      <img src="images/logo/ЛОГОТИП 1.svg" width="100" alt="ФениксФест"/>
+      <span>🔥 ФениксФест</span>
+    </a>
     <nav class="main-nav">
       <a href="index.html">Главная</a>
       <a href="about.html">О нас</a>
@@ -22,15 +25,27 @@
 </header>
 <main>
   <section class="hero">
-    <div class="container">
-      <h1>Добро пожаловать на ФениксФест</h1>
-      <p>Следите за предстоящими конкурсами, скачивайте положения и смотрите фотоотчёты.</p>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Добро пожаловать на ФениксФест</h1>
+        <p>Следите за предстоящими конкурсами, скачивайте положения и смотрите фотоотчёты.</p>
+      </div>
+      <div class="hero-logo">
+        <img src="images/logo/ЛОГОТИП 2.svg" alt="ФениксФест" width="150"/>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
   <section class="container">
     <h2>Ближайшие конкурсы</h2>
     <div id="upcoming-list" class="card-grid"></div>
   </section>
+  <section class="container">
+    <div style="text-align: center; margin-top: 20px;">
+      <a class="contests-all-btn" href="contests.html">Все конкурсы</a>
+    </div>
+</section>
 </main>
 <footer class="site-footer"><div class="container">© 2025 Социально-Фестивальное Творческое Движение «ФениксФест»</div></footer>
 <script src="scripts.js"></script>
