@@ -1,0 +1,155 @@
+:root{
+  --red:#E53935;--orange:#FF7043;--yellow:#FFCA28;--bg:#FAFAFA;--text:#222
+}
+
+* {
+  box-sizing:border-box
+}
+
+body {
+  font-family:Inter,Roboto,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  margin:0;
+  line-height:1.6
+}
+
+.container {
+  max-width:1100px;
+  margin:0 auto;
+  padding:20px
+}
+
+.site-header {
+  background:linear-gradient(90deg,var(--red),var(--orange));
+  color:#fff;
+  padding:12px 0
+}
+
+.header-flex {
+  display:flex;
+  align-items:center;
+  justify-content:space-between
+}
+
+.logo {
+  font-size:1.4em;
+  font-weight:700;
+  text-decoration:none;
+  color:#fff
+}
+
+.main-nav a {
+  margin-left:18px;
+  color:#fff;
+  text-decoration:none;
+  opacity:.95
+}
+
+.main-nav a:hover {
+  opacity:.8
+}
+
+.hero {
+  background:linear-gradient(90deg,var(--orange),var(--yellow));
+  padding:40px 20px;
+  text-align:center
+}
+
+h1,h2,h3 {
+  margin:0 0 .4em
+}
+
+.card-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+  margin-top:20px
+}
+
+.card {
+  background:#fff;
+  padding:16px;
+  border-radius:16px;
+  box-shadow:0 6px 16px rgba(0,0,0,.08);
+  overflow:hidden
+}
+
+.card img {
+  width:100%;
+  height:auto;
+  border-radius:12px
+}
+
+.card h3 {
+  margin:10px 0 6px
+}
+
+.card p {
+  margin:4px 0
+}
+
+.card .btn {
+  display:inline-block;
+  margin-top:10px;
+  padding:10px 14px;
+  border-radius:10px;
+  background:var(--red);
+  color:#fff;text-decoration:none
+}
+
+.card .btn:hover {
+  opacity:.9
+}
+
+.btn-requisites {
+  display:inline-block;
+  margin-top:10px;
+  padding:10px 14px;
+  border-radius:10px;
+  background:var(--red);
+  color:#fff;text-decoration:none
+}
+
+.btn-requisites:hover {
+  opacity:.9
+}
+
+.badge {
+  display:inline-block;
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:999px;
+  padding:4px 10px;
+  margin-right:8px
+}
+
+.kv {
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin:.4em 0
+}
+
+.gallery {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:16px;
+  margin-top:12px
+}
+
+.gallery img {
+  width:100%;
+  height:auto;
+  border-radius:10px
+}
+
+.site-footer {
+  margin-top:40px;
+  padding:20px;
+  background:#c4c4c4;
+  color:#000000;
+  text-align:center
+}
+
+@media (max-width:768px){.main-nav{display:flex;gap:12px;overflow:auto;padding-bottom:8px}}
