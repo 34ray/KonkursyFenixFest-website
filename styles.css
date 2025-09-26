@@ -227,6 +227,19 @@ h1,h2,h3 {
   opacity:.9
 }
 
+.btn-doc {
+  display:inline-block;
+  margin-top:10px;
+  padding:10px 14px;
+  border-radius:10px;
+  background:var(--red);
+  color:#fff;text-decoration:none
+}
+
+.btn-doc:hover {
+  opacity:.9
+}
+
 .badge {
   display:inline-block;
   background:#fff;
@@ -265,3 +278,197 @@ h1,h2,h3 {
 }
 
 @media (max-width:768px){.main-nav{display:flex;gap:12px;overflow:auto;padding-bottom:8px}}
+
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+  
+  .header-flex {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .logo {
+    font-size: 1.2em;
+    justify-content: center;
+  }
+  
+  .main-nav {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .main-nav a {
+    margin-left: 0;
+    white-space: nowrap;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    font-size: 0.9em;
+  }
+  
+  .hero {
+    padding: 30px 15px;
+  }
+  
+  .hero h1 {
+    font-size: 1.8em;
+  }
+  
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+  
+  .hero-logo {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    margin-top: 10px;
+  }
+  
+  .hero-logo img {
+    width: 200px;
+    opacity: 0.15;
+  }
+  
+  .card-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .card {
+    padding: 12px;
+    border-radius: 12px;
+  }
+  
+  .kv {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .badge {
+    width: 100%;
+    text-align: center;
+    margin-right: 0;
+  }
+  
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+  }
+  
+  .btn {
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+    padding: 12px 16px;
+    font-size: 1em;
+  }
+  
+  h1 {
+    font-size: 2em;
+    line-height: 1.2;
+  }
+  
+  h2 {
+    font-size: 1.5em;
+  }
+  
+  h3 {
+    font-size: 1.2em;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+  
+  .hero {
+    padding: 20px 10px;
+  }
+  
+  .hero h1 {
+    font-size: 1.5em;
+  }
+  
+  .hero p {
+    font-size: 0.9em;
+  }
+  
+  .logo {
+    font-size: 1.1em;
+  }
+  
+  .main-nav {
+    gap: 8px;
+  }
+  
+  .main-nav a {
+    padding: 6px 10px;
+    font-size: 0.85em;
+  }
+  
+  .card {
+    padding: 10px;
+    margin: 5px 0;
+  }
+  
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+  
+  .site-footer {
+    padding: 15px 10px;
+    font-size: 0.9em;
+  }
+}
+
+/* Улучшения для тач-устройств */
+@media (hover: none) and (pointer: coarse) {
+  .btn, .main-nav a {
+    min-height: 44px; /* Минимальный размер для касания */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .card {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .card:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Предотвращение горизонтального скролла */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* Улучшение читаемости текста на мобильных */
+body {
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Адаптация таблиц (если понадобятся) */
+table {
+  width: 100%;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}

@@ -85,10 +85,11 @@ function getParam(name){
       </div>
       <p style="margin-top:8px">${c.excerpt||''}</p>
       <p>
-        <a class="btn" href="${c.docs?.rules||'#'}" target="_blank">📄 Скачать положение (PDF)</a>
-        ${c.docs?.results?` <a class="btn" href="${c.docs.results}" target="_blank">🏆 Результаты (PDF)</a>`:''}
+        <a class="btn-doc" href="${c.docs?.rules||'#'}" target="_blank">📄 Скачать положение (PDF)</a>
+        
       </p>`
     ;
+    // ${c.docs?.results?` <a class="btn" href="${c.docs.results}" target="_blank">🏆 Результаты (PDF)</a>`:''}
       // <h2>Фотографии конкурса</h2>
       // <div class="gallery">
       //   ${(c.gallery||[]).map(src=>`<img src="${src}" alt="Фото конкурса">`).join('')}
