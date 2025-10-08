@@ -277,6 +277,74 @@ h1,h2,h3 {
   text-align:center
 }
 
+/* Стили для страницы с жюри */
+
+.jury-card {
+  display: flex;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.08);
+  margin-bottom: 30px;
+  overflow: hidden;
+  min-height: 400px;
+}
+
+.jury-photo {
+  flex: 0 0 300px;
+  position: relative;
+}
+
+.jury-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.jury-info {
+  flex: 1;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.jury-name {
+  color: var(--red);
+  margin: 0 0 10px 0;
+  font-size: 1.8em;
+  font-weight: 700;
+}
+
+.jury-city {
+  color: var(--orange);
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.jury-specialization {
+  background: linear-gradient(90deg, var(--orange), var(--yellow));
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.jury-bio {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.jury-bio p {
+  margin: 0;
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: var(--text);
+}
+
 @media (max-width:768px){.main-nav{display:flex;gap:12px;overflow:auto;padding-bottom:8px}}
 
 
@@ -432,6 +500,31 @@ h1,h2,h3 {
     padding: 15px 10px;
     font-size: 0.9em;
   }
+
+  /* Страница для жюри */
+  .jury-card {
+    flex-direction: column;
+    min-height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .jury-photo {
+    flex: none;
+    height: 500px;
+  }
+  
+  .jury-info {
+    padding: 20px;
+  }
+  
+  .jury-name {
+    font-size: 1.5em;
+  }
+  
+  .jury-bio p {
+    font-size: 1em;
+  }
+
 }
 
 /* Улучшения для тач-устройств */

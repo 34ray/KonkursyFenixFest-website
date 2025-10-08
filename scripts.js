@@ -105,3 +105,48 @@ function getParam(name){
     archive.innerHTML = past.map(archiveCardHTML).join('');
   }
 })();
+
+
+// Жюри
+// Функции для страницы жюри
+async function loadJury() {
+  try {
+    const res = await fetch('data/jury.json');
+    const jury = await res.json();
+    return jury;
+  } catch (error) {
+    console.error('Ошибка загрузки данных жюри:', error);
+    return [];
+  }
+}
+
+function juryCardHTML(jury) {
+  return `
+    <div class="jury-card">
+      <div class="jury-photo">
+        <img src="${jury.photo}" alt="${jury.name}" onerror="this.src='https://via.placeholder.com/300x500?text=Фото+жюри'">
+      </div>
+      <div class="jury-info">
+        <h2 class="jury-name">${jury.name}</h2>
+        <div class="jury-city">${jury.city}</div>
+        <div class="jury-specialization">${jury.specialization}</div>
+        <div class="jury-bio">
+          <p>${jury.bio}</p>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// Загрузка данных жюри
+(async function loadJuryPage() {
+  const juryContainer = document.getElementById('jury-list');
+  if (juryContainer) {
+    const jury = await loadJury();
+    if (jury.length > 0) {
+      juryContainer.innerHTML = jury.map(juryCardHTML).join('');
+    } else {
+      juryContainer.innerHTML = '<p>Информация о жюри скоро появится</p>';
+    }
+  }
+})();
