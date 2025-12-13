@@ -108,10 +108,19 @@ function getParam(name){
 
 
 // Жюри
-// Функции для страницы жюри
+// Функции для страницы жюри с пагинацией
+let currentPage = 1;
+const jurorsPerPage = 3;
+let allJury = [];
+
 async function loadJury() {
   try {
-    const res = await fetch('data/jury.json');
+    const res = await fetch('/data/jury.json');
+    
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+    
     const jury = await res.json();
     return jury;
   } catch (error) {
@@ -124,7 +133,7 @@ function juryCardHTML(jury) {
   return `
     <div class="jury-card">
       <div class="jury-photo">
-        <img src="${jury.photo}" alt="${jury.name}" onerror="this.src='https://via.placeholder.com/300x500?text=Фото+жюри'">
+        <img src="${jury.photo}" alt="${jury.name}" onerror="this.src='https://via.placeholder.com/300x400?text=Фото+жюри'">
       </div>
       <div class="jury-info">
         <h2 class="jury-name">${jury.name}</h2>
@@ -138,15 +147,69 @@ function juryCardHTML(jury) {
   `;
 }
 
-// Загрузка данных жюри
-(async function loadJuryPage() {
+function renderJuryPage(page, jury) {
+  const startIndex = (page - 1) * jurorsPerPage;
+  const endIndex = startIndex + jurorsPerPage;
+  const pageJurors = jury.slice(startIndex, endIndex);
+  
   const juryContainer = document.getElementById('jury-list');
-  if (juryContainer) {
-    const jury = await loadJury();
-    if (jury.length > 0) {
-      juryContainer.innerHTML = jury.map(juryCardHTML).join('');
+  juryContainer.innerHTML = pageJurors.map(juryCardHTML).join('');
+  
+  updatePaginationControls(page, jury.length);
+}
+
+function updatePaginationControls(currentPage, totalJurors) {
+  const totalPages = Math.ceil(totalJurors / jurorsPerPage);
+  const paginationContainer = document.getElementById('pagination-controls');
+  
+  let paginationHTML = '';
+  
+  // Кнопка "Назад"
+  if (currentPage > 1) {
+    paginationHTML += `<button class="pagination-btn" onclick="changePage(${currentPage - 1})">‹ Назад</button>`;
+  }
+  
+  // Номера страниц
+  for (let i = 1; i <= totalPages; i++) {
+    if (i === currentPage) {
+      paginationHTML += `<span class="pagination-current">${i}</span>`;
     } else {
-      juryContainer.innerHTML = '<p>Информация о жюри скоро появится</p>';
+      paginationHTML += `<button class="pagination-btn" onclick="changePage(${i})">${i}</button>`;
     }
+  }
+  
+  // Кнопка "Вперед"
+  if (currentPage < totalPages) {
+    paginationHTML += `<button class="pagination-btn" onclick="changePage(${currentPage + 1})">Вперед ›</button>`;
+  }
+  
+  // Информация о странице
+  paginationHTML += `<div class="pagination-info">Страница ${currentPage} из ${totalPages}</div>`;
+  
+  paginationContainer.innerHTML = paginationHTML;
+}
+
+function changePage(page) {
+  currentPage = page;
+  renderJuryPage(currentPage, allJury);
+  
+  // Прокрутка к верху страницы
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Загрузка данных жюри с пагинацией
+(async function loadJuryPage() {
+  console.log('Запуск загрузки страницы жюри...');
+  const juryContainer = document.getElementById('jury-list');
+  
+  if (juryContainer) {
+    allJury = await loadJury();
+    
+    if (allJury.length > 0) {
+      renderJuryPage(1, allJury);
+    } else {
+      juryContainer.innerHTML = '<p class="no-data">Информация о жюри скоро появится</p>';
+    }
+  } else {
   }
 })();
